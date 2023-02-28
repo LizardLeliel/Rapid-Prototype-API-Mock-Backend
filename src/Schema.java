@@ -1,11 +1,11 @@
-import java.util.List;
+import java.util.ArrayList;
 
 public class Schema {
     private String name;
     private String description;
-    private List<SchemaField> fields;
+    private ArrayList<SchemaField> fields;
 
-    public Schema(String name, String description, List<SchemaField> fields) {
+    public Schema(String name, String description, ArrayList<SchemaField> fields) {
         this.name = name;
         this.description = description;
 
@@ -20,7 +20,7 @@ public class Schema {
         return this.description;
     }
 
-    public List<SchemaField> getFields() {
+    public ArrayList<SchemaField> getFields() {
         return this.fields;
     }
 
@@ -40,7 +40,7 @@ public class Schema {
         this.description = newDescription;
     }
 
-    public void AddField(SchemaField newField) {
+    public void addField(SchemaField newField) {
         // Todo: uniqueness check.
         this.fields.add(newField);
     }
@@ -49,6 +49,8 @@ public class Schema {
         // todo: implement this.
         return true;
     }
+
+    // Todo: how do we simply update a schema field?
 
     // Could belong somewhere else but keep it here for convenience.
     @Override
