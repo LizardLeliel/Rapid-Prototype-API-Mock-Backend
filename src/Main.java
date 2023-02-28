@@ -1,13 +1,25 @@
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
+import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
         Main.testStuff();
 
+        File f = new File("./savedData");
+        String[] paths = f.list();
+
+        for (String path: paths) {
+            System.out.println(path);
+        }
+
+        System.out.println(f.exists()? "yes": "no");
+
+        File nf = new File("./savedData/b.txt");
+        File qf = new File("./savedData/a.txt");
+        System.out.println(nf.exists()? "yes": "no");
+        System.out.println(qf.exists()? "yes": "no");
     }
 
     public static void testStuff() {
@@ -37,5 +49,9 @@ public class Main {
         System.out.println(testUserSchema.toString());
 
         // Todo: test that invalid operations fail.
+
+        SchemaFileSaver schemaSaver = new SchemaFileSaver();
+
+        schemaSaver.save(testUserSchema);
     }
 }

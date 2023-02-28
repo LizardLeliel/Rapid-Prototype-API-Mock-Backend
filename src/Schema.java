@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Schema {
+public class Schema implements Serializable {
     private String name;
     private String description;
     private ArrayList<SchemaField> fields;
