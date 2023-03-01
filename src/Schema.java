@@ -6,7 +6,10 @@ public class Schema implements Serializable {
     private String description;
     private ArrayList<SchemaField> fields;
 
-    public Schema(String name, String description, ArrayList<SchemaField> fields) {
+    private final int id;
+
+    public Schema(int id, String name, String description, ArrayList<SchemaField> fields) {
+        this.id = id;
         this.name = name;
         this.description = description;
 
@@ -25,8 +28,8 @@ public class Schema implements Serializable {
         return this.fields;
     }
 
-    // This object does not handle verifying uniqueness of name value. Its DataSaver object will throw exception
-    //  if it tries to save a Schema with a conflicting name. The DataSaver object can be used to query uniqueness.
+    public int getId() { return this.id; }
+
     // Todo: Throw exception if name is invalid. For now, silently fail on empty string.
     public void setName(String newName) {
         if (newName.equals("")) {
@@ -56,7 +59,7 @@ public class Schema implements Serializable {
     // Could belong somewhere else but keep it here for convenience.
     @Override
     public String toString() {
-        String schemaString = "Name:" + this.name 
+        String schemaString = "Name:" + this.name + " (ID: " + Integer.toString(this.id) + ")"
             + "\n" + "Description: " + this.description
             + "\n" + "Fields:";
 

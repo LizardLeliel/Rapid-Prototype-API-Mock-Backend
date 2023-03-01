@@ -6,28 +6,19 @@ import java.io.File;
 public class Main {
     public static void main(String[] args) {
         Main.testStuff();
-
-        File f = new File("./savedData");
-        String[] paths = f.list();
-
-        for (String path: paths) {
-            System.out.println(path);
-        }
-
-        System.out.println(f.exists()? "yes": "no");
-
-        File nf = new File("./savedData/b.txt");
-        File qf = new File("./savedData/a.txt");
-        System.out.println(nf.exists()? "yes": "no");
-        System.out.println(qf.exists()? "yes": "no");
     }
 
     public static void testStuff() {
+        SchemaFileSaver schemaFileSaver = new SchemaFileSaver();
+
+        int newID1 = schemaFileSaver.getNewID();
+        int newID2 = schemaFileSaver.getNewID();
+
         // Sample test data
         SchemaField testNameField = new SchemaField("name", "The user's name", "string", true);
         SchemaField testEmailField = new SchemaField("email", "The user's email", "email", false);
         ArrayList<SchemaField> userFields = new ArrayList(Arrays.asList(testNameField, testEmailField));
-        Schema testUserSchema = new Schema("Test1", "This is a test schema", userFields);
+        Schema testUserSchema = new Schema(newID1, "Test1", "This is a test schema", userFields);
 
         System.out.println("Simple Example");
         System.out.println(testUserSchema.toString());
@@ -49,9 +40,11 @@ public class Main {
         System.out.println(testUserSchema.toString());
 
         // Todo: test that invalid operations fail.
+        schemaFileSaver.save(testUserSchema);
 
-        SchemaFileSaver schemaSaver = new SchemaFileSaver();
+        Schema differentSchema = new Schema(newID2, "Different", "Wow", new ArrayList<>());
+        schemaFileSaver.save(differentSchema);
 
-        schemaSaver.save(testUserSchema);
+        System.out.println(differentSchema.toString());
     }
 }
