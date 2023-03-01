@@ -48,5 +48,8 @@ public class Main {
 
         Schema presavedSchema = schemaFileSaver.retrieve("8");
         System.out.println(presavedSchema.toString());
+
+        // "-1" is a manually created file for the purpose of testing.
+        schemaFileSaver.remove("-1");
     }
 }

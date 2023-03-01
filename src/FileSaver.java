@@ -76,11 +76,13 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
     }
 
     public boolean remove(String location) {
-        return true;
+        File targetFile = new File(this.getFullSaveDirectoryPath() + location);
+        return targetFile.delete();
     }
 
     public boolean move(String source, String location) {
-        return true;
+        // This method is left unimplemented
+        return false;
     }
 
     public String[] queryAll() {
