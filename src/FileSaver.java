@@ -61,6 +61,17 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
     }
 
     public T retrieve(String source) {
+        T object;
+        try {
+            FileInputStream objectFile = new FileInputStream(this.getFullSaveDirectoryPath() + source);
+            ObjectInputStream deserializer = new ObjectInputStream(objectFile);
+
+            object = (T) deserializer.readObject();
+            deserializer.close();
+            return object;
+        } catch (Exception e) {
+
+        }
         return null;
     }
 
@@ -95,4 +106,12 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
     protected abstract String getDeterminant(T object);
 
     protected abstract String getSaveDirectory();
+
+    // protect abstract T
+
+    private String getFullSaveDirectoryPath() {
+        // Todo: don't use magic strings.
+        return this.configurationPath = "./" + "savedData"
+                + "/" + this.getSaveDirectory() + "/";
+    }
 }

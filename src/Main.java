@@ -40,11 +40,13 @@ public class Main {
         System.out.println(testUserSchema.toString());
 
         // Todo: test that invalid operations fail.
-        schemaFileSaver.save(testUserSchema);
+        // schemaFileSaver.save(testUserSchema);
 
-        Schema differentSchema = new Schema(newID2, "Different", "Wow", new ArrayList<>());
-        schemaFileSaver.save(differentSchema);
+        // ID #8 is a unique one designed to test retrieval.
+        // Schema differentSchema = new Schema(newID2, "Different", "Wow", new ArrayList<>());
+        // schemaFileSaver.save(differentSchema);
 
-        System.out.println(differentSchema.toString());
+        Schema presavedSchema = schemaFileSaver.retrieve("8");
+        System.out.println(presavedSchema.toString());
     }
 }
