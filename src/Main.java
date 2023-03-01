@@ -50,6 +50,10 @@ public class Main {
         System.out.println(presavedSchema.toString());
 
         // "-1" is a manually created file for the purpose of testing.
-        schemaFileSaver.remove("-1");
+        // schemaFileSaver.remove("-1");
+
+        for (String name: schemaFileSaver.queryAll()) {
+            System.out.println(name);
+        }
     }
 }
