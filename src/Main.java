@@ -39,7 +39,7 @@ public class Main {
 
         System.out.println(testUserSchema.toString());
 
-        // Todo: test that invalid operations fail.
+        // Todo: test that invalid schema operations fail.
         // schemaFileSaver.save(testUserSchema);
 
         // ID #8 is a unique one designed to test retrieval.
