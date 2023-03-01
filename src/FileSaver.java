@@ -3,7 +3,7 @@
 //import java.nio.Files.OutputStream;
 import java.io.*;
 
-// As opposed to something that saves to a DB
+// As opposed to something that saves to a database
 public abstract class FileSaver<T extends Serializable> implements DataSaver<T> {
 
     // Will overwrite existing files
