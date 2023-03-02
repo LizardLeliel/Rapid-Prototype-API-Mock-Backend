@@ -1,11 +1,15 @@
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.io.File;
 
 public class Main {
+    public static final String SAVE_DATA_DIRECTORY = "savedData";
+
     public static void main(String[] args) {
-        Main.testStuff();
+
+        // Main.testStuff();
+        SchemaFileSaver schemaFileSaver = new SchemaFileSaver();
+        MenuController menuController = new MenuController(new RootMenu(schemaFileSaver));
+        menuController.run();
     }
 
     public static void testStuff() {
@@ -39,6 +43,8 @@ public class Main {
 
         System.out.println(testUserSchema.toString());
 
+        schemaFileSaver.save(testUserSchema);
+
         // Todo: test that invalid schema operations fail.
         // schemaFileSaver.save(testUserSchema);
 
@@ -46,14 +52,14 @@ public class Main {
         // Schema differentSchema = new Schema(newID2, "Different", "Wow", new ArrayList<>());
         // schemaFileSaver.save(differentSchema);
 
-        Schema presavedSchema = schemaFileSaver.retrieve("8");
-        System.out.println(presavedSchema.toString());
+//        Schema presavedSchema = schemaFileSaver.retrieve("8");
+//        System.out.println(presavedSchema.toString());
 
         // "-1" is a manually created file for the purpose of testing.
         // schemaFileSaver.remove("-1");
 
-        for (String name: schemaFileSaver.queryAll()) {
-            System.out.println(name);
-        }
+//        for (Schema schema: schemaFileSaver.queryAll()) {
+//            System.out.println(schema.getName());
+//        }
     }
 }

@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.io.Serializable;
 
+/*
+ * Data container for "Schemas", information for what data certain objects may have.
+ *  (what data can be found in a "table")
+ */
 public class Schema implements Serializable {
     private String name;
     private String description;
@@ -56,7 +60,8 @@ public class Schema implements Serializable {
 
     // Todo: how do we simply update a schema field?
 
-    // Could belong somewhere else but keep it here for convenience.
+    // Could belong somewhere else - this class is intended to be a data container -
+    //  but keep it here for convenience.
     @Override
     public String toString() {
         String schemaString = "Name:" + this.name + " (ID: " + Integer.toString(this.id) + ")"

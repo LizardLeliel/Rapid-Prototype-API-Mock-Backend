@@ -1,6 +1,8 @@
+import java.util.ArrayList;
 
 /*
- * Represents this data can be stored in permanent storage
+ * Represents the methods needed for a class to be able to save and retrieve
+ *  information, regardless of implementation.
  */
 public interface DataSaver<T> {
 
@@ -13,8 +15,9 @@ public interface DataSaver<T> {
     // Remove destination.
     boolean remove(String location);
 
+    // Move the location of data. (todo: Necesssary?)
     boolean move(String source, String destination);
 
     // Lists all objects of this type that may be retrieved.
-    String[] queryAll();
+    public ArrayList<T> queryAll();
 }

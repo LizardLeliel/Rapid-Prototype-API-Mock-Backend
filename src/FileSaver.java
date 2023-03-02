@@ -1,9 +1,10 @@
-//import java.io.File;
-//import java.io.Serializable;
-//import java.nio.Files.OutputStream;
 import java.io.*;
+import java.util.ArrayList;
 
-// As opposed to something that saves to a database
+/*
+ * An abstract class implementing the DataSaver interface, using a simple filesystem to
+ *  permanently store the data (as opposed to a database).
+ */
 public abstract class FileSaver<T extends Serializable> implements DataSaver<T> {
     private String configurationPath;
     private int runningID;
@@ -13,7 +14,7 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
             // Todo: some sort of configuration variable
             // This file keeps tracking of how many unique IDs there are
             final String dataDirectory = "savedData";
-            this.configurationPath = "./" + dataDirectory
+            this.configurationPath = "./" + Main.SAVE_DATA_DIRECTORY
                     + "/" + this.getSaveDirectory()
                     + "/metadata";
 
@@ -85,28 +86,34 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
         return false;
     }
 
-    public String[] queryAll() {
+    public ArrayList<T> queryAll() {
         File saveDirectory = new File(this.getFullSaveDirectoryPath());
         File[] files = saveDirectory.listFiles();
         // Minus one because we don't include the "metafile" file
-        String[] fileNames = new String[files.length - 1];
-
-        boolean metadataFileFound = false;
+//         T[] items = (T[]) new Object[files.length - 1];
+        ArrayList<T> items = new ArrayList<T>();
+//        boolean metaFound = false;
         for (int i = 0; i < files.length; ++i) {
             String fileName = files[i].getName();
             if (fileName.equals("metadata")) {
-                metadataFileFound = true;
+                // If we found the metafile, start subtracting 1 to account for the
+                //  face we skipped over a file in this loop.
+//                items.add(this.retrieve(fileName));
+//                metaFound = true;
             } else {
-                fileNames[metadataFileFound? i-1: i] = fileName;
+//                items[metaFound? i-1: i] = this.retrieve(fileName);
+                items.add(this.retrieve(fileName));
+//                System.out.println("item: " + items[metaFound? i-1: i].toString());
             }
         }
-        return fileNames;
+//        return (T[]) items.toArray();
+        return items;
     }
 
     protected int getNewID() {
         this.runningID++;
 
-        // When the ID is updated, update the configuration file to remember that.
+        // When the ID is updated, update the configuration file so it'll remember that.
         try {
             BufferedWriter initialization = new BufferedWriter (new FileWriter(this.configurationPath));
             initialization.write(Integer.toString(this.runningID));
@@ -122,11 +129,8 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
 
     protected abstract String getSaveDirectory();
 
-    // protect abstract T
-
     private String getFullSaveDirectoryPath() {
-        // Todo: don't use magic strings.
-        return this.configurationPath = "./" + "savedData"
+        return this.configurationPath = "./" + Main.SAVE_DATA_DIRECTORY
                 + "/" + this.getSaveDirectory() + "/";
     }
 }

@@ -1,4 +1,10 @@
-public class SchemaField {
+import java.io.Serializable;
+
+/*
+ * This class represents a field on a Schema. IE, this represents a single data point that
+ *  contained in a table.
+ */
+public class SchemaField implements Serializable {
     private String label;
     private String description;
     // Todo: use enums for below
@@ -17,7 +23,7 @@ public class SchemaField {
     public String getType() { return this.type; }
     public boolean getRequired() { return this.required; }
 
-    // This method does not insure the label is unique. The class "Schema", which contains
+    // This method does not ensure the label is unique. The class "Schema", which contains
     //  the schema fields related to itself, will handle that validation.
     //Todo: implement exception for empty string. For now, fail silently.
     //Todo: more robust validation. Match the website. It should contain a non-whitespace character.
