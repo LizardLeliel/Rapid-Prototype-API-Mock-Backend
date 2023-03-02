@@ -89,24 +89,14 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
     public ArrayList<T> queryAll() {
         File saveDirectory = new File(this.getFullSaveDirectoryPath());
         File[] files = saveDirectory.listFiles();
-        // Minus one because we don't include the "metafile" file
-//         T[] items = (T[]) new Object[files.length - 1];
         ArrayList<T> items = new ArrayList<T>();
-//        boolean metaFound = false;
+
         for (int i = 0; i < files.length; ++i) {
             String fileName = files[i].getName();
-            if (fileName.equals("metadata")) {
-                // If we found the metafile, start subtracting 1 to account for the
-                //  face we skipped over a file in this loop.
-//                items.add(this.retrieve(fileName));
-//                metaFound = true;
-            } else {
-//                items[metaFound? i-1: i] = this.retrieve(fileName);
+            if (!fileName.equals("metadata")) {
                 items.add(this.retrieve(fileName));
-//                System.out.println("item: " + items[metaFound? i-1: i].toString());
             }
         }
-//        return (T[]) items.toArray();
         return items;
     }
 
