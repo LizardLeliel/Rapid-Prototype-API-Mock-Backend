@@ -42,6 +42,10 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
         }
     }
 
+    public T create() {
+        return this.createNew(this.getNewID());
+    }
+
     // Will overwrite existing files
     public boolean save(T object) {
         String determinant = this.getDeterminant(object);
@@ -105,10 +109,11 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
 
         // When the ID is updated, update the configuration file so it'll remember that.
         try {
-            BufferedWriter initialization = new BufferedWriter (new FileWriter(this.configurationPath));
+            BufferedWriter initialization = new BufferedWriter(new FileWriter(this.configurationPath));
             initialization.write(Integer.toString(this.runningID));
             initialization.close();
         } catch (Exception e) {
+            System.out.println("ERROR!");
             return 0;
         }
 
@@ -118,6 +123,8 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
     protected abstract String getDeterminant(T object);
 
     protected abstract String getSaveDirectory();
+
+    protected abstract T createNew(int newID);
 
     private String getFullSaveDirectoryPath() {
         return this.configurationPath = "./" + Main.SAVE_DATA_DIRECTORY

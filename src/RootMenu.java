@@ -36,21 +36,26 @@ public class RootMenu implements MenuNode {
                     for (Schema schema: schemas) {
                         System.out.println(schema.getId() + ": " + schema.getName());
                     }
-                    // View Scheams
+                    // View Schemas
                     break;
                 case "3":
-                    // Create new Schema, push
-                    // complete = true;
-                    // nextNode = new EditSchemaNode(newSchema, dataSaver)
+                    Schema newSchema = this.dataSaver.create();
+                    complete = true;
+                    nextNode = new SchemaEditMenu(this.dataSaver, newSchema);
                     break;
                 case "4":
-                    // Get schema
-                    // If schema invalid, tell that to user.
-                    // complete = true;
-                    // nextNode = new EditSchemaMenua(fetchedSChema, dataSaver)
+                    System.out.println("Which schema do you want to edit? (Input its ID)");
+                    String schemaID = this.scanner.nextLine();
+                    Schema schemaToEdit = this.dataSaver.retrieve(schemaID);
+                    complete = true;
+                    nextNode = new SchemaEditMenu(this.dataSaver, schemaToEdit);
                     break;
                 case "5":
-                    // delete node
+                    System.out.println("Which Schema to delete? (input ID number)");
+                    String id = this.scanner.nextLine();
+                    // Todo; "invalid input" check
+                    this.dataSaver.remove(id);
+                    System.out.println("Successful");
                 default:
                     // Print "invalid option", ask to try again.
             }

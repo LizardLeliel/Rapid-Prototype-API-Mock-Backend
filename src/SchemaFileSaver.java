@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class SchemaFileSaver extends FileSaver<Schema> {
 
     public SchemaFileSaver() {
@@ -10,5 +12,9 @@ public class SchemaFileSaver extends FileSaver<Schema> {
 
     protected String getSaveDirectory() {
         return "schemas";
+    }
+
+    protected Schema createNew(int newID) {
+        return new Schema(newID, "", "", new ArrayList<SchemaField>());
     }
 }
