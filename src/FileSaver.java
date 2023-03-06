@@ -102,6 +102,7 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
                 items.add(this.retrieve(fileName));
             }
         }
+
         return items;
     }
 
@@ -128,7 +129,6 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
     protected abstract T createNew(int newID);
 
     private String getFullSaveDirectoryPath() {
-        return this.configurationPath = "./" + Main.SAVE_DATA_DIRECTORY
-                + "/" + this.getSaveDirectory() + "/";
+        return "./" + Main.SAVE_DATA_DIRECTORY  + "/" + this.getSaveDirectory() + "/";
     }
 }
