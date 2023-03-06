@@ -70,12 +70,11 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
         try {
             FileInputStream objectFile = new FileInputStream(this.getFullSaveDirectoryPath() + source);
             ObjectInputStream deserializer = new ObjectInputStream(objectFile);
-
             object = (T) deserializer.readObject();
             deserializer.close();
             return object;
         } catch (Exception e) {
-
+            System.out.println("Exception - " + e.toString());
         }
         return null;
     }
@@ -97,6 +96,8 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
 
         for (int i = 0; i < files.length; ++i) {
             String fileName = files[i].getName();
+            // System.out.println(fileName + " / " + this.getFullSaveDirectoryPath());
+
             if (!fileName.equals("metadata")) {
                 items.add(this.retrieve(fileName));
             }
@@ -113,7 +114,7 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
             initialization.write(Integer.toString(this.runningID));
             initialization.close();
         } catch (Exception e) {
-            System.out.println("ERROR!");
+            System.out.println("ERROR! - " + e.toString());
             return 0;
         }
 

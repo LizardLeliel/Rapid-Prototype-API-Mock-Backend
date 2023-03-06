@@ -32,6 +32,15 @@ public class Schema implements Serializable {
         return this.fields;
     }
 
+    public SchemaField getSchema(String label) {
+        for (SchemaField field: this.fields) {
+            if (field.getLabel().equals(label)) {
+                return field;
+            }
+        }
+        return null;
+    }
+
     public int getId() { return this.id; }
 
     // Todo: Throw exception if name is invalid. For now, silently fail on empty string.
@@ -91,14 +100,5 @@ public class Schema implements Serializable {
         }
 
         return schemaString;
-    }
-
-    private SchemaField getSchema(String label) {
-        for (SchemaField field: this.fields) {
-            if (field.getLabel().equals(label)) {
-                return field;
-            }
-        }
-        return null;
     }
 }
