@@ -13,6 +13,7 @@ public class SchemaEditMenu implements MenuNode {
     }
 
     public void listOptions() {
+        System.out.println("Editing Schema " + this.schema.getId() + " (" + this.schema.getName() + ")");
         System.out.println("1. Save and Return");
         System.out.println("2. Show Schema info");
         System.out.println("3. Change Name");
@@ -94,6 +95,7 @@ public class SchemaEditMenu implements MenuNode {
                 case "9":
                     complete = true;
                     nextNode = null;
+                    break;
                 default:
                     System.out.println("Invalid Option");
                     // Print "invalid option", ask to try again.

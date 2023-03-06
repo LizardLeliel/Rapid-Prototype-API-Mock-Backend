@@ -12,13 +12,12 @@ public class SchemaFieldTypeEditMenu implements MenuNode {
     }
 
     public void listOptions() {
-        System.out.println("1. Save and return");
-        System.out.println("2. List current type");
-        System.out.println("3. Set to string");
-        System.out.println("4. Set to number");
-        System.out.println("5. Set to boolean");
-        System.out.println("6. Set to email");
-        System.out.println("7. Reset changes and return");
+        System.out.println("Setting " + this.schemaField.getLabel() + " type. (Currently " + this.schemaField.getType() + ")");
+        System.out.println("1. Set to string and return");
+        System.out.println("2. Set to number and return");
+        System.out.println("3. Set to boolean and return");
+        System.out.println("4. Set to email and return");
+        System.out.println("5. Cancel");
     }
 
     @Override
@@ -29,25 +28,21 @@ public class SchemaFieldTypeEditMenu implements MenuNode {
             String input = this.scanner.nextLine();
             switch (input) {
                 case "1":
-                    this.schemaField.setType(this.candidateType);
+                    this.schemaField.setType("string");
                     return null;
                 case "2":
-                    System.out.println(this.candidateType + " (was " + this.schemaField.getType() + ")");
-                    break;
-                case "3":
-                    this.candidateType = "string";
-                    break;
-                case "4":
-                    this.candidateType = "number";
-                    break;
-                case "5":
-                    this.candidateType = "boolean";
-                    break;
-                case "6":
-                    this.candidateType = "email";
-                    break;
-                case "7":
+                    this.schemaField.setType("number");
                     return null;
+                case "3":
+                    this.schemaField.setType("boolean");
+                    return null;
+                case "4":
+                    this.schemaField.setType("email");
+                    return null;
+                case "5":
+                    return null;
+                default:
+                    System.out.println("Invalid command.");
             }
         }
     }

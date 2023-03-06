@@ -10,6 +10,7 @@ public class RootMenu implements MenuNode {
     }
 
     public void listOptions() {
+        System.out.println("Top Menu");
         System.out.println("1. Return");
         System.out.println("2. View Schemas");
         System.out.println("3. Create Schema");

@@ -24,6 +24,8 @@ public class SchemaFieldEditMenu implements MenuNode {
         // Changing the label will be implemented once we change the implementation so fields use
         //  an integer ID to distinguish each other instead of name..
         public void listOptions() {
+            System.out.println("Editing field " + this.schemaField.getLabel() + " on Schema "
+                    + this.schema.getId() + " (" + this.schema.getName() + ")");
             System.out.println("1. Save and Return");
             System.out.println("2. Print field info");
             System.out.println("3. Change Description");
