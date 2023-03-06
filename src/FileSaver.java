@@ -14,9 +14,7 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
             // Todo: some sort of configuration variable
             // This file keeps tracking of how many unique IDs there are
             final String dataDirectory = "savedData";
-            this.configurationPath = "./" + Main.SAVE_DATA_DIRECTORY
-                    + "/" + this.getSaveDirectory()
-                    + "/metadata";
+            this.configurationPath = this.getFullSaveDirectoryPath() + "metadata";
 
 
 
@@ -96,7 +94,6 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
 
         for (int i = 0; i < files.length; ++i) {
             String fileName = files[i].getName();
-            // System.out.println(fileName + " / " + this.getFullSaveDirectoryPath());
 
             if (!fileName.equals("metadata")) {
                 items.add(this.retrieve(fileName));
@@ -115,7 +112,7 @@ public abstract class FileSaver<T extends Serializable> implements DataSaver<T> 
             initialization.write(Integer.toString(this.runningID));
             initialization.close();
         } catch (Exception e) {
-            System.out.println("ERROR! - " + e.toString());
+            System.out.println("Exception - " + e.toString());
             return 0;
         }
 
