@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/*
+ * Menu for editing a specific schema.
+ */
 public class SchemaEditMenu implements MenuNode {
     private Scanner scanner = new Scanner(System.in);
     private Schema schema;

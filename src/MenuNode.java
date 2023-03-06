@@ -3,8 +3,6 @@
  * Will very likely be refactored.
  */
 public interface MenuNode {
-    // Todo: Just make this a string? (This function really should be removed)
-    public void listOptions();
-    // Return true if going back a menu, return false if staying in this menu
+    // Return null if going back a menu, return a menu if changing menus.
     public MenuNode processInput();
 }

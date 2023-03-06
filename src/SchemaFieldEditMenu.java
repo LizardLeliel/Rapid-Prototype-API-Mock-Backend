@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/*
+ *  A menu for editing a specific field on a schema.
+ */
 public class SchemaFieldEditMenu implements MenuNode {
         private Scanner scanner = new Scanner(System.in);
         private Schema schema;

@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/*
+ * A menu for editing the type on a schema field. Very small menu.
+ */
 public class SchemaFieldTypeEditMenu implements MenuNode {
     private Scanner scanner = new Scanner(System.in);
     private SchemaField schemaField;

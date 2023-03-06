@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/*
+ * The top-level menu the user will see first.
+ */
 public class RootMenu implements MenuNode {
     private Scanner scanner = new Scanner(System.in);
     private DataSaver<Schema> dataSaver;

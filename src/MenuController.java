@@ -1,5 +1,10 @@
 import java.util.Stack;
 
+/*
+ * A basic controller for handling a terminal menu.
+ *
+ * Will handle returning to the previous menu.
+ */
 public class MenuController {
     private Stack<MenuNode> menuStack = new Stack<MenuNode>();
 
