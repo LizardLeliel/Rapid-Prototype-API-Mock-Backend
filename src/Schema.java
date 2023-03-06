@@ -54,7 +54,21 @@ public class Schema implements Serializable {
     }
 
     public boolean removeField(String label) {
-        // todo: implement this.
+        SchemaField field = this.getSchema(label);
+        if (label == null) return false;
+
+        return this.fields.remove(field);
+    }
+
+    // Todo: If you want to just update the description, type, or required, you will have to refeed them to this
+    //  function. A better method should be used.
+    public boolean updateField(String label, String description, String type, boolean required) {
+        SchemaField field = this.getSchema(label);
+        if (field == null) return false;
+
+        field.setDescription(description);
+        field.setType(type);
+        field.setRequired(required);
         return true;
     }
 
@@ -77,5 +91,14 @@ public class Schema implements Serializable {
         }
 
         return schemaString;
+    }
+
+    private SchemaField getSchema(String label) {
+        for (SchemaField field: this.fields) {
+            if (field.getLabel().equals(label)) {
+                return field;
+            }
+        }
+        return null;
     }
 }
