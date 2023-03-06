@@ -78,7 +78,7 @@ public class SchemaFieldEditMenu implements MenuNode {
                         complete = true;
                         break;
                     default:
-                        System.out.println("Command not understood.");
+                        System.out.println("Invalid command.");
                 }
             }
 

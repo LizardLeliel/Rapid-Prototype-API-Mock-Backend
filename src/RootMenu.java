@@ -58,7 +58,7 @@ public class RootMenu implements MenuNode {
                     this.dataSaver.remove(id);
                     System.out.println("Successful");
                 default:
-                    // Print "invalid option", ask to try again.
+                    System.out.println("Invalid command.");
             }
 
         }

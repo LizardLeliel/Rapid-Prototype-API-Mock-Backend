@@ -110,7 +110,7 @@ public class SchemaEditMenu implements MenuNode {
                     nextNode = null;
                     break;
                 default:
-                    System.out.println("Invalid Option");
+                    System.out.println("Invalid command.");
             }
         }
 
