@@ -41,7 +41,20 @@ public class SchemaEditMenu implements MenuNode {
                     nextNode = null;
                     break;
                 case "2":
-                    System.out.println("Unimplemented.");
+                    System.out.println("Schema " + this.schema.getId() + ": " + this.schema.getName());
+                    System.out.println("Description: " + this.schema.getDescription());
+                    ArrayList<SchemaField> fields = this.schema.getFields();
+                    if (fields.size() == 0) {
+                        System.out.println("No fields.");
+                    }
+                    else {
+                        System.out.println(Integer.toString(fields.size()) + " field(s):");
+                        for (SchemaField field: fields) {
+                            System.out.println("- " + field.getLabel() + "(" + field.getLabel() + ", "
+                                + (field.getRequired()? "": "not ") + "required)");
+                        }
+                    }
+
                     break;
                 case "3":
                     // Todo: description name constraints and reforce it.
@@ -98,7 +111,6 @@ public class SchemaEditMenu implements MenuNode {
                     break;
                 default:
                     System.out.println("Invalid Option");
-                    // Print "invalid option", ask to try again.
             }
         }
 
